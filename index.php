@@ -1,9 +1,56 @@
+<?php
+include "querys.php";
+include "conexion.php";
+
+$connection = conexion();
+$query = ConsultarMinimo();
+
+$executequery = mysqli_query($connection,$query) or die (mysqli_error($connection));
+
+
+?>
+
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <script src="js/jquery.js" ></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/funciones.js"></script>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
 </head>
 
 <body>
@@ -26,19 +73,28 @@
       </div>
     </div>
 
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="toast-header">
+    <?php
+    while($viewquery = mysqli_fetch_array($executequery)){
+      //print_r($viewquery);
+      echo "<div class='toast' role='alert' aria-live='assertive' aria-atomic='true' data-autohide='false'>
+    <div class='toast-header'>
 
-    <strong class="mr-auto">Bootstrap</strong>
-    <small class="text-muted">11 mins ago</small>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+      <strong class='mr-auto text-danger'>Alerta</strong>
+      <small class='text-muted'>".idate("H").":".idate("m").":".idate("s")."</small>
+      <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button>
+    </div>
+    <div class='toast-body text-danger'>
+      El producto " .$viewquery['nom_produc']." ha alcanzado la cantidad minima en bodega, cantidad minima=".$viewquery['can_min_bod']." cantidad en existencia=".$viewquery['cantidad_disponible'].".
+    </br>Sugerencia : reponer en bodega</div>
   </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
-</div>
+  "."</br>";
+    }
+
+?>
+
+<!-- Flexbox container for aligning the toasts -->
 
   <input class="btn btn-primary" type="submit" id ="boton" hidden>
 </form>
