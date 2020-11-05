@@ -124,7 +124,7 @@ $executequery = mysqli_query($connection,$query) or die (mysqli_error($connectio
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
-    
+
   </tbody>
 </table>
 <table  class="display table table-sm table-dark">
