@@ -13,9 +13,12 @@ $executequery = mysqli_query($connection,$query) or die (mysqli_error($connectio
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
   <script src="js/jquery.js" ></script>
   <script src="js/bootstrap.min.js"></script>
+
   <script src="js/funciones.js"></script>
+    <script src="js/datatables.min.js"></script>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -99,12 +102,106 @@ $executequery = mysqli_query($connection,$query) or die (mysqli_error($connectio
   <input class="btn btn-primary" type="submit" id ="boton" hidden>
 </form>
 
+<table class="table table-sm" id ="tabla12">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    
+  </tbody>
+</table>
+<table  class="display table table-sm table-dark">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>apellidos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>Tiger Nixon</td>
+        <td>System Architect</td>
+
+    </tr>
+  </tbody>
+
+</table>
+
+<!--<table id="tabla1" class="display table table-sm table-dark">
+        <thead>
+            <tr>
+                <th scope = "col">Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>63</td>
+                <td>2011/07/25</td>
+                <td>$170,750</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>66</td>
+                <td>2009/01/12</td>
+                <td>$86,000</td>
+            </tr>
+
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+    </table>-->
+
 
 </body>
 <script>
-  $(document).ready(function(){
-    $('.toast').toast('show');
-  });
+  $(document).ready( function () {
+  //  $('#tabla1').DataTable();
+    $('#tabla12').DataTable();
+});
 </script>
 </html>
 <?php
